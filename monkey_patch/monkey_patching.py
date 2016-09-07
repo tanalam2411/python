@@ -11,6 +11,11 @@ environment.
 
 Below we are considering an example in which we are trying to monkey patch
 get_data method of class BaseClass from base_module.
+
+Replacing or adding methods at run-time can be extremely useful. While it is
+often used (e.g. sometimes functions for communicating with external services
+are replaced when unit-testing) it’s extremely important to keep code
+maintainability in mind before deciding to do so.
 """
 
 
