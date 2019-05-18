@@ -102,7 +102,7 @@ inf
 9 ) 
 ```python
 from urllib.request import urlopen
-with open('http://xyz.com/f/txt') as f:
+with urlopen('http://xyz.com/f/t.txt') as f:
     words = []
     
     for line in f:
@@ -141,3 +141,4 @@ Function level doc
         url: Some url
 ```
 
+14) Cmd lib - argparse, docopt
