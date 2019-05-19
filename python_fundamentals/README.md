@@ -141,4 +141,112 @@ Function level doc
         url: Some url
 ```
 
-14) Cmd lib - argparse, docopt
+14 ) Cmd lib - argparse, docopt
+
+15 ) Tuple unpacking
+```python
+>>> (a, (b, (c, d))) = (1, (2, (3, 4)))
+>>> a
+1
+>>> b
+2
+>>> c
+3
+>>> d
+4
+
+```
+
+16 ) Str partition
+```python
+>>> a, b, c = 'a-b'.partition('-')
+>>> a
+'a'
+>>> b
+'-'
+>>> c
+'b'
+
+```
+
+17 ) Set - Unordered collection of unique, immutable objects
+```python
+
+>>> s = {1, 2, 3}
+>>> s.add(4)
+>>> s
+set([1, 2, 3, 4])
+>>> s.update([5, 6, 7])
+>>> s
+set([1, 2, 3, 4, 5, 6, 7])
+>>> 
+>>> s.discard(5)
+>>> s
+set([1, 2, 3, 4, 6, 7])
+>>> s.discard(5)
+>>> s
+set([1, 2, 3, 4, 6, 7])
+>>> 
+
+```
+
+Union : Unique elements from both the sets
+```python
+>>> s1 = {1, 2, 3}
+>>> s2 = {3, 4, 5}
+>>> s1.union(s2)
+set([1, 2, 3, 4, 5])
+>>> s2.union(s1)
+set([1, 2, 3, 4, 5])
+
+```
+
+Intersection: Common in both the sets
+```python
+>>> s1.intersection(s2)
+set([3])
+
+```
+
+Difference : Not present in the other set
+```python
+>>> s1.difference(s2)
+set([1, 2])
+>>> s2.difference(s1)
+set([4, 5])
+```
+
+Symmetric Difference - Present in Set1 and Set2 but not in both
+```python
+>>> s1.symmetric_difference(s2)
+set([1, 2, 4, 5])
+>>> s2.symmetric_difference(s1)
+set([1, 2, 4, 5])
+
+```
+
+Subset - all elements of setA exists in setB
+```python
+>>> {1, 2}.issubset(s1)
+True
+
+```
+
+Superset - setA contains all elements of setB
+```python
+>>> s1.issuperset({1, 2})
+True
+
+```
+
+Disjoint - no common elements between setA and setB
+```python
+set([1, 2, 3])
+>>> s1.isdisjoint({4, 5})
+True
+
+```
+
+
+18 ) Difference between iterable and sequence - both are interable but sequence are ordered and interable may or maynot be ordered. 
+     Dict is not a sequence. 
