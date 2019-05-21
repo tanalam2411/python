@@ -250,3 +250,131 @@ True
 
 18 ) Difference between iterable and sequence - both are interable but sequence are ordered and interable may or maynot be ordered. 
      Dict is not a sequence. 
+     
+     
+19 ) Passing print msg to stderr
+```python
+>>> import sys
+>>> 
+>>> try:
+...     f = open('/a/b/c.txt')
+... except IOError as e:
+...     print(e, file=sys.stderr)
+... 
+[Errno 2] No such file or directory: '/a/b/c.txt'
+>>> 
+
+```
+
+
+20 ) List and Set Comprehension -
+```python
+>>> from math import factorial
+>>> f = [len(str(factorial(x))) for x in range(20)]
+>>> f
+[1, 1, 1, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 18]
+>>> 
+>>> f = {len(str(factorial(x))) for x in range(20)}
+>>> f
+{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 18}
+>>> 
+```
+
+21 ) Dict Comprehension - 
+```python
+>>> import os
+>>> import glob
+>>> file_sizes = {os.path.realpath(p): os.stat(p).st_size for p in glob.glob('*.py')}
+>>> file_sizes
+{'/home/tan/tanveer/git_python/python/__init__.py': 0}
+
+```
+
+
+22 ) Prime number - 
+```python
+
+>>> from math import sqrt
+>>> def is_prime(num):
+        if num < 2:
+            return False
+        for i in range(2, int(sqrt(num))+1):
+            if num % i == 0:
+                return False
+        return True    
+
+>>> {i: is_prime(i) for i in range(100)}
+```
+
+23 ) Iterable protocol - Iterable objects can be passed to the built-in `iter()` function to get an interator.
+
+`iterator = iter(iterable)`
+
+Iterator protocol - Iterator objects can be passed to the build-in `next()` function to fetch the next item.
+
+`item = next(iterator)`
+
+```python
+>>> l = [1,2,3]
+>>> i = iter(l)
+>>> next(i)
+1
+>>> next(i)
+2
+>>> next(i)
+3
+>>> next(i)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+
+```
+
+
+24 ) Generator - At a glance, the yield statement is used to define generators, replacing the return of a function to provide a result to its caller without destroying local variables. Unlike a function, where on each call it starts with new set of variables, a generator will resume the execution where it was left off.
+```python
+def take(count, iterable):
+
+    counter = 0
+    for item in iterable:
+        if counter == count:
+            return
+        counter += 1
+        yield item
+
+
+def run_take():
+    items = [2, 4, 6, 8, 10]
+
+    for item in take(3, items):
+        print(item)
+
+run_take()
+
+---
+2
+4
+6
+---
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------
+1) http://book.pythontips.com/en/latest/index.html
