@@ -357,6 +357,97 @@ run_take()
 6
 ---
 
+# fibonacci or lucas series
+def fibonacci(num):
+    print 0
+    a, b = 1, 0
+    while a <= num:
+        print 'a: {}, b: {}'.format(a, b)
+        a, b = b, a + b
+        yield b
+
+for i in fibonacci(10):
+    print i
+    
+-----------
+0
+a: 1, b: 0
+1
+a: 0, b: 1
+1
+a: 1, b: 1
+2
+a: 1, b: 2
+3
+a: 2, b: 3
+5
+a: 3, b: 5
+8
+a: 5, b: 8
+13
+a: 8, b: 13
+21
+-----------
+
+```
+
+Generator comprehensions:
+
+```python
+
+>>> g = (i**2 for i in range(10))
+>>> g
+<generator object <genexpr> at 0x7fb4c4d17f50>
+>>> list(g)
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> g
+<generator object <genexpr> at 0x7fb4c4d17f50>
+>>> list(g)
+[]
+
+```
+
+
+25 ) Any and All
+
+Other built-ins - sum(), zip(), min(), max(), enumerate()
+```python
+>>> [True if i> 5 else False for i in range(10)]
+[False, False, False, False, False, False, True, True, True, True]
+>>>
+>>> any(True if i> 5 else False for i in range(10))
+True
+>>> 
+>>> all(True if i> 5 else False for i in range(10))
+False
+
+```
+
+
+26 ) Get default encoding
+```python
+>>> import sys
+>>> sys.getdefaultencoding()
+'utf-8'
+
+```
+
+
+27 ) Read file -
+
+```python
+import sys
+
+def main():
+    f = open('filename.ext', mode='rt', encoding='utf-8')
+    for line in f:
+        # print adds additional new line
+        # sys.stdout is same as stream so does file content
+        sys.stdout.write(line)
+    f.close()
+    
+if __name__ == '__main__':
+    main(sys.argv[1])
 
 ```
 
@@ -373,8 +464,6 @@ run_take()
 
 
 
-
-
-
 ------------------------------------------------
 1) http://book.pythontips.com/en/latest/index.html
+2) https://blog.heroku.com/python37-dataclasses-async-await?c=7013A000002IZyyQAG&utm_campaign=Newsletter_May_2019&utm_medium=email&utm_source=newsletter&utm_content=blog&utm_term=dataclasses
