@@ -453,17 +453,66 @@ if __name__ == '__main__':
 
 
 
+28 ) Context manager - https://docs.python.org/3/library/contextlib.html
+
+```python
+
+from contextlib import closing
+
+class DoSomething:
+
+    def open(self):
+        print "Opening"
+
+    def close(self):
+        print "closing"
+
+with closing(DoSomething()) as ds:
+    ds.open()
+    
+-----------
+Opening
+closing
+-----------
+
+```
 
 
+29 ) PDB - python debugger
+```python
+>>> import pdb
+>>> pdb.set_trace()
+--Return--
+> <stdin>(1)<module>()->None
+(Pdb) help
+```
+
+```bash
+$ python3 -m pdb module.py
+```
+
+```python
+(pdb) where - shows line at which the debugger is.
+(pdb) next - executes the next statement.
+(pdb) cont - continue next execution.
+(pdb) list - shows the source code at that line.
+(pdb) return - try to return from the current function.
+```
 
 
+30 ) Virtual Environments - 
 
-
-
-
-
+```bash
+$ python3 -m venv venv_name
+$ source venv_name/bin/activate
+(venv_name) $
+(venv_name) $ deactivate
+$
+```
 
 
 ------------------------------------------------
 1) http://book.pythontips.com/en/latest/index.html
 2) https://blog.heroku.com/python37-dataclasses-async-await?c=7013A000002IZyyQAG&utm_campaign=Newsletter_May_2019&utm_medium=email&utm_source=newsletter&utm_content=blog&utm_term=dataclasses
+3) https://docs.python.org/3/library/
+4) https://docs.python.org/3/tutorial/index.html
