@@ -87,3 +87,204 @@ _NamespacePath(['Lib/test/namespace_pkgs/project1/parent/child', 'Lib/test/names
 
 * __ _pycache_ __ - To speed up loading modules, Python caches the compiled version of each module in the __ _pycache_ __ directory under the name module.version.pyc, where the version encodes the format of the compiled file; it generally contains the Python version number. For example, in CPython release 3.6 the compiled version of spam.py would be cached as __ _pycache_ __/spam.cpython-36.pyc.
 
+4 ) Executable directories (__ _main_ __)- Directories containing an entry point for Python execution.
+
+```bash
+└── reader
+    ├── __main__.py
+    ├── __pycache__
+    │   └── __main__.cpython-36.pyc
+    └── reader
+        ├── __init__.py
+        ├── __pycache__
+        │   ├── __init__.cpython-36.pyc
+        │   └── reader.cpython-36.pyc
+        └── reader.py
+
+```
+
+Now you can run package itself.
+
+```bash
+# This will call __main__ module from reader package
+$  python3 reader $filename
+```
+
+5 ) Recommended project struture
+
+```bash
+project_name/
+├── __main__.py
+├── project_name
+│   ├── __init__.py
+│   ├── more_source.py
+│   ├── subpackage1
+│   │   └── __init__.py
+│   └── test
+│       ├── __init__.py
+│       └── test_code.py
+└── setup.py
+
+```
+
+6 ) sys.path[0] - Import modules from the current directory
+
+```python
+>>> import sys
+>>> sys.path[0]
+''
+
+```
+
+7 ) -m - Modules can be executed by passing -m argument
+```bash
+$ python3 -m p1
+```
+
+8 ) Positional, keyword argument - 
+
+```python
+# arg1 - positional arg
+# arg2 - keyword arg
+# 1.1 - default argument value
+function_name(arg1, arg2=1.1)
+```
+
+9 ) __ _call_ __() - Callable instances
+
+```python
+class A:
+
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self):
+        print('A: %s' % self.name)
+
+
+obj = A('Python')
+obj()
+
+
+--------------------
+A: Python
+--------------------
+
+```
+
+10 ) Detecting callable Objects:
+
+```python
+>>> def is_even(x): return x % 2 == 0
+... 
+>>> callable(is_even)
+True
+>>> is_odd = lambda x: x % 2 != 0
+>>> callable(is_odd)
+True
+>>> callable(list)
+True
+>>> callable(list.append)
+True
+>>> class CallMe:
+...     def __call__(self):
+...         print('called!!!')
+... 
+>>> call_me = CallMe()
+>>> callable(call_me)
+True
+>>> 
+>>> callable('abcdef')
+False
+```
+
+11 ) *args - 
+
+```python
+def hypervolume(*lengths):
+    i = iter(lengths)
+    v = next(i)
+    print i, v
+
+    for length in i:
+        v *= length
+    return v
+
+
+print hypervolume(2, 4)
+print hypervolume(2, 4, 6)
+print hypervolume(2, 4, 6, 8)
+print hypervolume(1)
+
+-------------------------------------------
+<tupleiterator object at 0x7f800913cb90> 2
+8
+<tupleiterator object at 0x7f800913cb90> 2
+48
+<tupleiterator object at 0x7f800913cb90> 2
+384
+<tupleiterator object at 0x7f800913cb90> 1
+1
+-------------------------------------------
+
+```
+
+*args unpacking
+```python
+def print_args(a1, a2, *args):
+    print(a1)
+    print(a2)
+    print(args)
+
+t = (1, 2, 3, 4)
+print_args(*t)
+
+
+--------
+1
+2
+(3, 4)
+--------
+```
+
+same goes for **kwargs
+
+```python
+def print_kwargs(k1, k2, **kwargs):
+    print(k1)
+    print(k2)
+    print(kwargs)
+
+d = dict(k1=1, k2=2, k3=3, k4=4)
+print_kwargs(**d)
+
+---------------------
+1
+2
+{'k3': 3, 'k4': 4}
+---------------------
+
+```
+
+12 ) *zip - 
+
+```python
+>>> l = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+>>> 
+>>> for item in zip(l[0], l[1], l[2]): print item
+... 
+(1, 4, 7)
+(2, 5, 8)
+(3, 6, 9)
+>>> 
+>>> 
+>>> for item in zip(*l): print item
+... 
+(1, 4, 7)
+(2, 5, 8)
+(3, 6, 9)
+
+>>> list(zip(*l))
+[(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+
+```
