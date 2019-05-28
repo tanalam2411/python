@@ -290,4 +290,62 @@ print_kwargs(**d)
 ```
 
 
-13 ) Closures - 
+13 ) Closures - Before getting into what a closure is, we have to first understand what a nested function and nonlocal variable is.
+
+A function defined inside another function is called a nested function. Nested functions can access variables of the enclosing scope.
+
+In Python, these non-local variables are read only by default and we must declare them explicitly as non-local (using nonlocal keyword) in order to modify them.
+
+```python
+def print_msg(msg):
+# This is the outer enclosing function
+
+    def printer():
+# This is the nested function
+        print(msg)
+
+    printer()
+
+# We execute the function
+# Output: Hello
+print_msg("Hello")
+```
+
+
+We can see that the nested function printer() was able to access the non-local variable msg of the enclosing function.
+
+Defining a Closure Function - 
+In the example above, what would happen if the last line of the function print_msg() returned the printer() function instead of calling it? This means the function was defined as follows.
+```python
+def print_msg(msg):
+# This is the outer enclosing function
+
+    def printer():
+# This is the nested function
+        print(msg)
+
+    return printer  # this got changed
+
+# Now let's try calling this function.
+# Output: Hello
+another = print_msg("Hello")
+another()
+```
+
+The print_msg() function was called with the string "Hello" and the returned function was bound to the name another. On calling another(), the message was still remembered although we had already finished executing the print_msg() function.
+
+This technique by which some data ("Hello") gets attached to the code is called closure in Python.
+
+This value in the enclosing scope is remembered even when the variable goes out of scope or the function itself is removed from the current namespace.
+
+Try running the following in the Python shell to see the output.
+
+```python
+>>> del print_msg
+>>> another()
+Hello
+>>> print_msg("Hello")
+Traceback (most recent call last):
+...
+NameError: name 'print_msg' is not defined
+```
