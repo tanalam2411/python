@@ -290,11 +290,28 @@ print_kwargs(**d)
 ```
 
 
-13 ) Closures - Before getting into what a closure is, we have to first understand what a nested function and nonlocal variable is.
+13 ) [Closures](https://www.programiz.com/python-programming/closure) - A function defined inside another function is called a nested function. Nested functions can access variables of the enclosing scope.
 
-A function defined inside another function is called a nested function. Nested functions can access variables of the enclosing scope.
 
-In Python, these non-local variables are read only by default and we must declare them explicitly as non-local (using nonlocal keyword) in order to modify them.
+These non-local variables are read only by default and we must declare them explicitly as non-local (using nonlocal keyword) in order to modify them.
+```python
+def outer_function():
+    a = 5
+    def inner_function():
+        nonlocal a
+        a = 10
+        print("Inner function: ",a)
+    inner_function()
+    print("Outer function: ",a)
+
+outer_function()
+
+--------------------
+Inner function:  10
+Outer function:  10
+--------------------
+``` 
+
 
 ```python
 def print_msg(msg):
@@ -311,11 +328,9 @@ def print_msg(msg):
 print_msg("Hello")
 ```
 
-
-We can see that the nested function printer() was able to access the non-local variable msg of the enclosing function.
-
-Defining a Closure Function - 
+**Defining a Closure Function** - 
 In the example above, what would happen if the last line of the function print_msg() returned the printer() function instead of calling it? This means the function was defined as follows.
+
 ```python
 def print_msg(msg):
 # This is the outer enclosing function
