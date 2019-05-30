@@ -364,3 +364,35 @@ Traceback (most recent call last):
 ...
 NameError: name 'print_msg' is not defined
 ```
+
+
+14 ) Function Factories - Function that returns new, specialized functions.
+
+```python
+def raise_to(exp):
+    def raise_to_exp(x):
+        return pow(x, exp)
+    return raise_to_exp
+
+square = raise_to(2)
+print(square.__closure__)
+print "cell_contents: ", square.__closure__[0].cell_contents
+print(square(2))
+print(square(5))
+
+qube = raise_to(3)
+print "cell_contents: ", qube.__closure__[0].cell_contents
+print(qube(3))
+print(qube(4))
+
+----
+(<cell at 0x7f9e3689f0c0: int object at 0x2508140>,)
+cell_contents:  2
+4
+25
+cell_contents:  3
+27
+64
+----
+
+```
