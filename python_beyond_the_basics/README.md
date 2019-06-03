@@ -397,4 +397,4 @@ cell_contents:  3
 
 ```
 
-15 ) Nonlocal keyword - 
+15 ) Nonlocal keyword - Introduce names from enclosing namespace into the local namespace.
