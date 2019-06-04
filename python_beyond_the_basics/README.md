@@ -398,3 +398,76 @@ cell_contents:  3
 ```
 
 15 ) Nonlocal keyword - Introduce names from enclosing namespace into the local namespace.
+
+Without global or nonlocal:
+
+```python
+x = 0
+def outer():
+    x = 1
+    def inner():
+        x = 2
+        print("inner:", x)
+
+    inner()
+    print("outer:", x)
+
+outer()
+print("global:", x)
+
+----------
+inner: 2
+outer: 1
+global: 0
+----------
+
+```
+
+
+Using global: If we were to use global, it would bind x to the properly "global" value:
+```python
+x = 0
+def outer():
+    x = 1
+    def inner():
+        global x
+        x = 2
+        print("inner:", x)
+
+    inner()
+    print("outer:", x)
+
+outer()
+print("global:", x)
+
+---------- 
+inner: 2
+outer: 1
+global: 2
+----------
+
+```
+
+Using nonlocal: using nonlocal, where inner()'s x is now also outer()'s x:
+
+```python
+x = 0
+def outer():
+    x = 1
+    def inner():
+        nonlocal x
+        x = 2
+        print("inner:", x)
+
+    inner()
+    print("outer:", x)
+
+outer()
+print("global:", x)
+----------
+inner: 2
+outer: 2
+global: 0
+----------
+
+```

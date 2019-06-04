@@ -525,3 +525,4 @@ $
 2) https://blog.heroku.com/python37-dataclasses-async-await?c=7013A000002IZyyQAG&utm_campaign=Newsletter_May_2019&utm_medium=email&utm_source=newsletter&utm_content=blog&utm_term=dataclasses
 3) https://docs.python.org/3/library/
 4) https://docs.python.org/3/tutorial/index.html
+5) https://github.com/jackfrued/python_interview_question
