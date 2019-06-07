@@ -511,3 +511,10 @@ None
 -------------------
 
 ```
+
+
+16 ) Decorators - Modify or enhance functions without changing their definition.
+
+Implemented as callables that take and return other callables.
+
+
