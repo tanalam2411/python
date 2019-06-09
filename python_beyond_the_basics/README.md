@@ -518,5 +518,5 @@ None
 Implemented as callables that take and return other callables.
 
 ```python
-
+#Decorator
 ```
