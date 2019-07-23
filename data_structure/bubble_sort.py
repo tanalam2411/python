@@ -10,9 +10,21 @@ Input array = [5, 4, 3, 2, 1]
 
 In every iteration one of the largest number will be shifted to the end.
 
-So it will take N - 1 iteration if array is completely unsorted, meaning is
-case if we're doing asce order the input order would be in des order and vice
-versa.
+So it will take N - 1 iteration if array is completely unsorted, meaning in
+case if we're sorting in asc order and the input order would be in des order and
+vice versa.
+
+e.g:
+
+arr  = [5, 4, 3, 2, 1]
+
+1st Iteration:
+    Compare : arr[0] > arr[1]
+            if True than Swap arr[0], arr[1] = arr[1], arr[0]
+    Compare : arr[1] > arr[2]
+            if True than Swap arr[1], arr[2] = arr[2], arr[1]
+    Repeat till arr[N-1] > arr[N]
+
 
 
 """
