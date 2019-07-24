@@ -25,7 +25,15 @@ arr  = [5, 4, 3, 2, 1]
             if True than Swap arr[1], arr[2] = arr[2], arr[1]
     Repeat till arr[N-1] > arr[N]
 
+2nd Iteration:
+    Compare : arr[0] > arr[1]
+            if True than Swap arr[0], arr[1] = arr[1], arr[0]
+    Repeat till arr[N-2] > arr[N-1]  # As the last number is already sorted
 
+N-1 Iteration:
+    Compare : arr[0] > arr[1]
+            if True than Swap arr[0], arr[1] = arr[1], arr[0]
+            break
 
 """
 
