@@ -35,6 +35,11 @@ N-1 Iteration:
             if True than Swap arr[0], arr[1] = arr[1], arr[0]
             break
 
+Time complexity:
+    Best Case  -
+    Avg Case   -
+    Worst Case -
+
 """
 
 
